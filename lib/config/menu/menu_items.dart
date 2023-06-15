@@ -19,6 +19,13 @@ class MenuItem {
 }
     List<MenuItem> appMenuItems = [
 
+    const MenuItem(
+      title: 'Counter Screen RP',
+      subTitle: 'Riverpod',
+      link: '/river',
+      icon: Icons.add), 
+
+
      const MenuItem(
         title:'Botones' ,
         subTitle: 'Varios botones en flutter',
@@ -69,56 +76,7 @@ class MenuItem {
         subTitle: 'Listas infinitas y pull to refresh',
         link:'/infinite'  ,
         icon:Icons.list_alt_rounded
-        ), /*
-      const MenuItem(
-        title:'Tarjetas' ,
-        subTitle: 'Contenedor estilizado',
-        link:'/card'  ,
-        icon:Icons.credit_card
-        ),
-      const MenuItem(
-        title:'Tarjetas' ,
-        subTitle: 'Contenedor estilizado',
-        link:'/card'  ,
-        icon:Icons.credit_card
-        ),
-      const MenuItem(
-        title:'Tarjetas' ,
-        subTitle: 'Contenedor estilizado',
-        link:'/card'  ,
-        icon:Icons.credit_card
-        ),
-      const MenuItem(
-        title:'Tarjetas' ,
-        subTitle: 'Contenedor estilizado',
-        link:'/card'  ,
-        icon:Icons.credit_card
-        ),
-      const MenuItem(
-        title:'Tarjetas' ,
-        subTitle: 'Contenedor estilizado',
-        link:'/card'  ,
-        icon:Icons.credit_card
-        ),
-      const MenuItem(
-        title:'Tarjetas' ,
-        subTitle: 'Contenedor estilizado',
-        link:'/card'  ,
-        icon:Icons.credit_card
-        ),
-      const MenuItem(
-        title:'Tarjetas' ,
-        subTitle: 'Contenedor estilizado',
-        link:'/card'  ,
-        icon:Icons.credit_card
-        ),
-      const MenuItem(
-        title:'Tarjetas' ,
-        subTitle: 'Contenedor estilizado',
-        link:'/card'  ,
-        icon:Icons.credit_card
-        ),
-*/
+        ), 
 
     ];
 
