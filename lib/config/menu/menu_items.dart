@@ -19,6 +19,13 @@ class MenuItem {
 }
     List<MenuItem> appMenuItems = [
 
+
+  const MenuItem(
+      title: 'Theme Changer',
+      subTitle: 'Theme Changer Riverpod',
+      link: '/theme_changer_screen',
+      icon: Icons.color_lens_outlined), 
+
     const MenuItem(
       title: 'Counter Screen RP',
       subTitle: 'Riverpod',

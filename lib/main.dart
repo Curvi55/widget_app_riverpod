@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:widgets_app/config/router/app_router.dart';
 import 'package:widgets_app/config/themes/app_theme.dart';
+import 'package:widgets_app/presentation/providers/theme_provider.dart';
 /* ya despuesd de definir las rutas en app_router.dart no se necesita importarlas 1 a 1
 
 import 'package:widgets_app/presentation/screens/buttons/buttons_screen.dart';
@@ -35,17 +37,28 @@ void main() async {
       await PlatformAssetBundle().load('assets/ca/lets-encrypt-r3.pem');
   SecurityContext.defaultContext
       .setTrustedCertificatesBytes(data.buffer.asUint8List());
-
-  runApp(const MainApp());
+  
+  runApp(
+      ProviderScope(
+        child: MainApp()
+      )
+    );
 }
 
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MainApp extends ConsumerWidget {
+
+  MainApp({
+    super.key    
+  });
+
   
+
   @override
-  Widget build(BuildContext context) {
-    
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    final myIsDarkMode = ref.watch(isDarkMode);  
+    final mySelectedColor = ref.watch(selectedColorProvider);
     // notese que se le agrega router al MaterialApp
     return MaterialApp.router(  //estilo de go_router
 
@@ -53,7 +66,7 @@ class MainApp extends StatelessWidget {
       routerConfig: appRouter, // se connecta ahora con el router definido en app_router.dart
       
       debugShowCheckedModeBanner: false,
-      theme:AppTheme(selectedColor: 0).getTheme(),
+      theme:AppTheme(selectedColor: mySelectedColor, isDarkMode: myIsDarkMode).getTheme(),
       /*
       home: const HomeScreen(),
         FLUTTER recomienda utilizar go_router en vez de este tipo de routing
