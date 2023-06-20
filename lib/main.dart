@@ -30,6 +30,7 @@ si algo se daño y queremos volver a la ultima version de commit estable
 usar el comando git checkout -- .
 */
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -39,41 +40,52 @@ void main() async {
       .setTrustedCertificatesBytes(data.buffer.asUint8List());
   
   runApp(
-      ProviderScope(
+      const ProviderScope(
         child: MainApp()
       )
     );
 }
 
-
+/*
+void main(){
+    runApp(const ProviderScope(child: MainApp()));
+}
+*/
 class MainApp extends ConsumerWidget {
 
-  MainApp({
+  const MainApp({
     super.key    
   });
 
   
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
+    /* Ahora en vez de utilizar estos dos por separados vamos a usar el theme provider
     final myIsDarkMode = ref.watch(isDarkMode);  
     final mySelectedColor = ref.watch(selectedColorProvider);
+    */
+    final AppTheme appTheme  = ref.watch(themeNotifierProvider);
+    
     // notese que se le agrega router al MaterialApp
     return MaterialApp.router(  //estilo de go_router
 
-      title: 'Flutter Widgets', // este titulo se usa tambien en el showAboutDialog
-      routerConfig: appRouter, // se connecta ahora con el router definido en app_router.dart
-      
-      debugShowCheckedModeBanner: false,
-      theme:AppTheme(selectedColor: mySelectedColor, isDarkMode: myIsDarkMode).getTheme(),
-      /*
-      home: const HomeScreen(),
-        FLUTTER recomienda utilizar go_router en vez de este tipo de routing
-      routes: {
-        '/buttons': (context) => const ButtonsScreen(),
-        '/cards':(context) => const CardsScreen()
-      } */
+          title: 'Flutter Widgets', // este titulo se usa tambien en el showAboutDialog
+          routerConfig: appRouter, // se connecta ahora con el router definido en app_router.dart
+          
+          debugShowCheckedModeBanner: false,
+          //theme:AppTheme(selectedColor: mySelectedColor, isDarkMode: myIsDarkMode).getTheme(),
+          // utilizando ahora en vez de la ultima linea podemos utilizar la instancia de la clase apptheme directamente y obtener el tema y asignarlo
+          //theme: appTheme.getTheme(),
+          theme: appTheme.copyWith().getTheme(),
+          darkTheme: appTheme.getTheme(),
+          
+          /*
+          home: const HomeScreen(),
+            FLUTTER recomienda utilizar go_router en vez de este tipo de routing
+          routes: {
+            '/buttons': (context) => const ButtonsScreen(),
+            '/cards':(context) => const CardsScreen()
+          } */
 
 
       );
